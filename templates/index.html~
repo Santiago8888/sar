@@ -1,0 +1,44 @@
+<html>
+ <head>
+  {% load static %}
+  <title>{{neg.Nombre}}</title>
+  <link rel="shortcut icon" type="image/png" href="{% static "login/logo.png" %}"/>
+  <link href="{% static "login/bootstrap/CSS/bootstrap.css" %}" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+ <body>
+  <nav class="navbar navbar-default">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </button>
+     <a class="navbar-brand" href="#"><b>‎ζ</b></a>
+     <a class="navbar-brand" href="https:/paghid.mx/"><b>{{neg.Nombre}}</b></a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><br>
+     {% block diem %}{% endblock %}
+     {% block indicem %}{% endblock %}
+     {% block institutis %}{% endblock %} 
+    </div><!-- /.navbar-collapse -->
+   </div><!-- /.container-fluid -->
+  </nav> 
+  <div class="row">
+   <div class="col-lg-12"><br>
+     {% block titulus %}{% endblock %}
+     {% block notitia %}{% endblock %}
+     {% block addendum %}{% endblock %} 
+   </div>
+  </div>
+ </body>
+ <script src="{% static "login/bootstrap/js/jquery-3.1.1.min.js" %}"></script>
+ <script src="{% static "login/bootstrap/js/bootstrap.min.js" %}"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+ <script src="{% static "login/js/diem.js" %}"></script>
+</html>
+

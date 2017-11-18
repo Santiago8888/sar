@@ -1,0 +1,10 @@
+{% extends "sar/base.html" %}
+{% block titulus %}
+<table class="table table-bordered">
+{% for p in pro %}
+<tr style="text-align:center;"><th style="text-align:center;"><a href="pro/{{p.pk}}">{{p.Nombre}}</a></th><td>$ {{p.Precio}}</td>
+{% endfor %}
+</table>
+{% endblock %}
+
+

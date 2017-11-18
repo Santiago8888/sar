@@ -1,0 +1,55 @@
+    $(document).ready(function(){
+      var date_input=$('input[name="dateD"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'dd/mm/yyyy',
+        viewMode: "month",
+        minViewMode:"month",
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+$(document).ready(function(){
+
+  //Initialize the datePicker(I have taken format as mm-dd-yyyy, you can     //have your owh)
+  $("#weeklyDatePicker").datetimepicker({
+      format: 'MM-DD-YYYY'
+  });
+
+   //Get the value of Start and End of Week
+  $('#weeklyDatePicker').on('dp.change', function (e) {
+      var value = $("#weeklyDatePicker").val();
+      var firstDate = moment(value, "MM-DD-YYYY").day(0).format("MM-DD-YYYY");
+      var lastDate =  moment(value, "MM-DD-YYYY").day(6).format("MM-DD-YYYY");
+      $("#weeklyDatePicker").val(firstDate + " - " + lastDate);
+  });
+});
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm-yyyy',
+        viewMode: "months",
+        minViewMode:"months",
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+    $(document).ready(function(){
+      var date_input=$('input[name="dateY"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'yyyy',
+        viewMode: "years",
+        minViewMode:"years",
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+

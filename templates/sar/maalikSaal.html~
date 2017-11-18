@@ -1,0 +1,57 @@
+{% extends "sar/base.html" %}
+{% load static %}
+{% block diem %}
+    <form style="width=100%" action=" " method="POST">{% csrf_token %}
+     <div class="form-group" style="text-align:center;"> <!-- Date input -->
+      <input class="form-control" style="text-align:center;" id="date" name="dateD" placeholder="Información por Día" type="text" autocomplete="off"/><br>
+      <input id="weeklyDatePicker" class="form-control" style="text-align:center;" id="date" name="dateS" placeholder="Información por Semana" type="text" autocomplete="off"/><br>
+      <input class="form-control" style="text-align:center;" id="date" name="date" placeholder="Información por Mes" type="text" autocomplete="off"/><br>
+      <input class="form-control" style="text-align:center;" id="date" name="dateY" placeholder="Información por Año" type="text" autocomplete="off"/>
+     </div>
+     <div class="form-group"> <!-- Submit button -->
+      <button class="btn btn-primary btn-block " name="submit" type="submit"><b>Ir al Periodo Seleccionado</b></button>
+     </div><br>
+    </form>
+
+{% endblock %}
+{% block titulus %}
+<table class="table table-bordered" style="width:96%; margin-left:2%;">
+{% for m in M %}
+<tr style="text-align:center;"><th style="text-align:center;"><a href="/sar/maalik/maheena/{{m.pk}}/">{{m.Mes.Nombre}}</a></th>
+<td>{{m.Cantidad}}</td><td>$ {{m.Total}}</td>
+{% endfor %}
+<tr style="text-align:center;"><th style="text-align:center;">Total</th><th style="text-align:center;">{{total.0}}</th><th style="text-align:center;">$ {{total.1|floatformat:2}}</th>
+</table>
+{% endblock %}
+{% block notitia %}
+ <script src="{% static "login/bootstrap/js/jquery-3.1.1.min.js" %}"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/locale/es-us.js"></script>
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="dateS"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'dd/mm/yyyy',
+        viewMode: "month",
+        minViewMode:"month",
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+$(document).ready(function(){
+  $("#weeklyDatePicker").datepicker({
+      format: 'DD-MM-YYYY'
+  });
+  $("#weeklyDatePicker").on("change paste keyup", function() {
+      var value = $("#weeklyDatePicker").val();
+      var firstDate = moment(value, "DD-MM-YYYY").day(0).format("DD-MM-YYYY");
+      var lastDate =  moment(value, "DD-MM-YYYY").day(6).format("DD-MM-YYYY");
+      $("#weeklyDatePicker").val(firstDate + " - " + lastDate);
+});})
+</script>
+{% endblock %}
+
